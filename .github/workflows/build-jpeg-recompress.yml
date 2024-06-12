@@ -24,5 +24,15 @@ jobs:
           context: "{{defaultContext}}:jpeg-recompress"
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ghcr.io/smitherander/zz-build-jpeg-recompress
+          tags: ghcr.io/theaschmidt82/zz-build-jpeg-recompress
           provenance: false
+      - uses: shrink/actions-docker-extract@v3
+        with:
+          image: ghcr.io/theaschmidt82/zz-build-jpeg-recompress
+          path: /jpeg-recompress
+          destination: jpeg-recompress
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: jpeg-recompress
+          overwrite: true
