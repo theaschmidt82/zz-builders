@@ -6,11 +6,11 @@ on:
     paths:
       - 'jpeg-recompress/**'
   workflow_dispatch:
+permissions: 
+  packages: write
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: 
-      packages: write
     steps:
       - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
